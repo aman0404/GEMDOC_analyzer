@@ -1,4 +1,4 @@
-# GEMDOC_analyzer
+# GEMDOC Analyzer
 #This requires only root and can be run either online or in CMSSW
 
 ```
