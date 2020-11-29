@@ -1,4 +1,4 @@
-#Script to submit condor jobs at lxplus
+# Script to submit condor jobs at lxplus
 # This script will submit condor jobs for all the files listed in 'files.txt'
 
 Change path name for your OfflineMain.C code in  submit_script.sh
