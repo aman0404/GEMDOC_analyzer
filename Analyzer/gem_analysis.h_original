@@ -185,7 +185,7 @@ public :
    std::vector<float>   *gemSegment_dirGlb_phi;
    std::vector<float>   *gemSegment_dirGlb_eta;
    UInt_t          mu_nMuons;
-/*   std::vector<float>   *mu_pt;
+   std::vector<float>   *mu_pt;
    std::vector<float>   *mu_phi;
    std::vector<float>   *mu_eta;
    std::vector<short>   *mu_charge;
@@ -204,38 +204,7 @@ public :
    std::vector<float>   *mu_propagatedGlb_y;
    std::vector<float>   *mu_propagatedGlb_z;
    std::vector<float>   *mu_propagatedGlb_r;
-*/
-  std::vector<float>   *mu_pt;
-  std::vector<float>   *mu_phi;
-  std::vector<float>   *mu_eta;
-  std::vector<short>   *mu_charge;
-  std::vector<bool>    *mu_isGlobal;
-  std::vector<bool>    *mu_isStandalone;
-  std::vector<bool>    *mu_isTracker;
-  std::vector<bool>    *mu_isGEM;
-  std::vector<bool>    *mu_isLoose;
-  std::vector<bool>    *mu_isMedium;
-  std::vector<bool>    *mu_isTight;
-  std::vector<bool>    *mu_isME11;
-   Float_t         mu_path_length;
-  std::vector<bool>    *mu_isinsideout;
-  std::vector<bool>    *mu_isincoming;
-  std::vector<int>     *mu_propagated_region;
-  std::vector<int>     *mu_propagated_layer;
-  std::vector<int>     *mu_propagated_chamber;
-  std::vector<int>     *mu_propagated_etaP;
-  std::vector<float>   *mu_propagated_pt;
-  std::vector<float>   *mu_propagated_phi;
-  std::vector<float>   *mu_propagated_eta;
-  std::vector<float>   *mu_propagated_charge;
-  std::vector<float>   *mu_propagatedLoc_x;
-  std::vector<float>   *mu_propagatedLoc_y;
-  std::vector<float>   *mu_propagatedLoc_z;
-  std::vector<float>   *mu_propagatedLoc_r;
-  std::vector<float>   *mu_propagatedGlb_x;
-  std::vector<float>   *mu_propagatedGlb_y;
-  std::vector<float>   *mu_propagatedGlb_z;
-  std::vector<float>   *mu_propagatedGlb_r;
+
    // List of branches
    TBranch        *b_event_runNumber;   //!
    TBranch        *b_event_lumiBlock;   //!
@@ -392,26 +361,6 @@ public :
    TBranch        *b_gemSegment_dirGlb_phi;   //!
    TBranch        *b_gemSegment_dirGlb_eta;   //!
    TBranch        *b_mu_nMuons;   //!
-   /*TBranch        *b_mu_pt;   //!
-   TBranch        *b_mu_phi;   //!
-   TBranch        *b_mu_eta;   //!
-   TBranch        *b_mu_charge;   //!
-   TBranch        *b_mu_isGlobal;   //!
-   TBranch        *b_mu_isStandalone;   //!
-   TBranch        *b_mu_isTracker;   //!
-   TBranch        *b_mu_isGEM;   //!
-   TBranch        *b_mu_isLoose;   //!
-   TBranch        *b_mu_isMedium;   //!
-   TBranch        *b_mu_isTight;   //!
-   TBranch        *b_mu_propagatedLoc_x;   //!
-   TBranch        *b_mu_propagatedLoc_y;   //!
-   TBranch        *b_mu_propagatedLoc_z;   //!
-   TBranch        *b_mu_propagatedLoc_r;   //!
-   TBranch        *b_mu_propagatedGlb_x;   //!
-   TBranch        *b_mu_propagatedGlb_y;   //!
-   TBranch        *b_mu_propagatedGlb_z;   //!
-   TBranch        *b_mu_propagatedGlb_r;   //!
-*/
    TBranch        *b_mu_pt;   //!
    TBranch        *b_mu_phi;   //!
    TBranch        *b_mu_eta;   //!
@@ -423,18 +372,6 @@ public :
    TBranch        *b_mu_isLoose;   //!
    TBranch        *b_mu_isMedium;   //!
    TBranch        *b_mu_isTight;   //!
-   TBranch        *b_mu_isME11;   //!
-   TBranch        *b_mu_path_length;   //!
-   TBranch        *b_mu_isinsideout;   //!
-   TBranch        *b_mu_isincoming;   //!
-   TBranch        *b_mu_propagated_region;   //!
-   TBranch        *b_mu_propagated_layer;   //!
-   TBranch        *b_mu_propagated_chamber;   //!
-   TBranch        *b_mu_propagated_etaP;   //!
-   TBranch        *b_mu_propagated_pt;   //!
-   TBranch        *b_mu_propagated_phi;   //!
-   TBranch        *b_mu_propagated_eta;   //!
-   TBranch        *b_mu_propagated_charge;   //!
    TBranch        *b_mu_propagatedLoc_x;   //!
    TBranch        *b_mu_propagatedLoc_y;   //!
    TBranch        *b_mu_propagatedLoc_z;   //!
@@ -487,7 +424,7 @@ gem_analysis::gem_analysis(TChain *tree,
 //   }
    Init(tree); 
    
-   bookHistograms(outFileName);
+   //bookHistograms(outFileName);
 }
 
 gem_analysis::gem_analysis(const char* infile,
@@ -502,7 +439,7 @@ TChain *chain = new TChain("muNtupleProducer/MuDPGTree");
 	Init(chain);
 
 	//Now book histograms
-	    bookHistograms(outFileName);
+	    //bookHistograms(outFileName);
 	      }
 }
 
@@ -686,7 +623,7 @@ void gem_analysis::Init(TChain *tree)
    gemSegment_posGlb_eta = 0;
    gemSegment_dirGlb_phi = 0;
    gemSegment_dirGlb_eta = 0;
-/*   mu_pt = 0;
+   mu_pt = 0;
    mu_phi = 0;
    mu_eta = 0;
    mu_charge = 0;
@@ -705,39 +642,7 @@ void gem_analysis::Init(TChain *tree)
    mu_propagatedGlb_y = 0;
    mu_propagatedGlb_z = 0;
    mu_propagatedGlb_r = 0;
-*/
- mu_pt = 0;
-   mu_phi = 0;
-   mu_eta = 0;
-   mu_charge = 0;
-   mu_isGlobal = 0;
-   mu_isStandalone = 0;
-   mu_isTracker = 0;
-   mu_isGEM = 0;
-   mu_isLoose = 0;
-   mu_isMedium = 0;
-   mu_isTight = 0;
-   mu_isME11 = 0;
-   mu_isinsideout = 0;
-   mu_isincoming = 0;
-   mu_propagated_region = 0;
-   mu_propagated_layer = 0;
-   mu_propagated_chamber = 0;
-   mu_propagated_etaP = 0;
-   mu_propagated_pt = 0;
-   mu_propagated_phi = 0;
-   mu_propagated_eta = 0;
-   mu_propagated_charge = 0;
-   mu_propagatedLoc_x = 0;
-   mu_propagatedLoc_y = 0;
-   mu_propagatedLoc_z = 0;
-   mu_propagatedLoc_r = 0;
-   mu_propagatedGlb_x = 0;
-   mu_propagatedGlb_y = 0;
-   mu_propagatedGlb_z = 0;
-   mu_propagatedGlb_r = 0;
-  
- // Set branch addresses and branch pointers
+   // Set branch addresses and branch pointers
    if (!tree) return;
    fChain = tree;
    fCurrent = -1;
@@ -898,7 +803,7 @@ void gem_analysis::Init(TChain *tree)
    fChain->SetBranchAddress("gemSegment_dirGlb_phi", &gemSegment_dirGlb_phi, &b_gemSegment_dirGlb_phi);
    fChain->SetBranchAddress("gemSegment_dirGlb_eta", &gemSegment_dirGlb_eta, &b_gemSegment_dirGlb_eta);
    fChain->SetBranchAddress("mu_nMuons", &mu_nMuons, &b_mu_nMuons);
- /*  fChain->SetBranchAddress("mu_pt", &mu_pt, &b_mu_pt);
+   fChain->SetBranchAddress("mu_pt", &mu_pt, &b_mu_pt);
    fChain->SetBranchAddress("mu_phi", &mu_phi, &b_mu_phi);
    fChain->SetBranchAddress("mu_eta", &mu_eta, &b_mu_eta);
    fChain->SetBranchAddress("mu_charge", &mu_charge, &b_mu_charge);
@@ -917,39 +822,7 @@ void gem_analysis::Init(TChain *tree)
    fChain->SetBranchAddress("mu_propagatedGlb_y", &mu_propagatedGlb_y, &b_mu_propagatedGlb_y);
    fChain->SetBranchAddress("mu_propagatedGlb_z", &mu_propagatedGlb_z, &b_mu_propagatedGlb_z);
    fChain->SetBranchAddress("mu_propagatedGlb_r", &mu_propagatedGlb_r, &b_mu_propagatedGlb_r);
-  */
-   fChain->SetBranchAddress("mu_pt", &mu_pt, &b_mu_pt);
-   fChain->SetBranchAddress("mu_phi", &mu_phi, &b_mu_phi);
-   fChain->SetBranchAddress("mu_eta", &mu_eta, &b_mu_eta);
-   fChain->SetBranchAddress("mu_charge", &mu_charge, &b_mu_charge);
-   fChain->SetBranchAddress("mu_isGlobal", &mu_isGlobal, &b_mu_isGlobal);
-   fChain->SetBranchAddress("mu_isStandalone", &mu_isStandalone, &b_mu_isStandalone);
-   fChain->SetBranchAddress("mu_isTracker", &mu_isTracker, &b_mu_isTracker);
-   fChain->SetBranchAddress("mu_isGEM", &mu_isGEM, &b_mu_isGEM);
-   fChain->SetBranchAddress("mu_isLoose", &mu_isLoose, &b_mu_isLoose);
-   fChain->SetBranchAddress("mu_isMedium", &mu_isMedium, &b_mu_isMedium);
-   fChain->SetBranchAddress("mu_isTight", &mu_isTight, &b_mu_isTight);
-   fChain->SetBranchAddress("mu_isME11", &mu_isME11, &b_mu_isME11);
-   fChain->SetBranchAddress("mu_path_length", &mu_path_length, &b_mu_path_length);
-   fChain->SetBranchAddress("mu_isinsideout", &mu_isinsideout, &b_mu_isinsideout);
-   fChain->SetBranchAddress("mu_isincoming", &mu_isincoming, &b_mu_isincoming);
-   fChain->SetBranchAddress("mu_propagated_region", &mu_propagated_region, &b_mu_propagated_region);
-   fChain->SetBranchAddress("mu_propagated_layer", &mu_propagated_layer, &b_mu_propagated_layer);
-   fChain->SetBranchAddress("mu_propagated_chamber", &mu_propagated_chamber, &b_mu_propagated_chamber);
-   fChain->SetBranchAddress("mu_propagated_etaP", &mu_propagated_etaP, &b_mu_propagated_etaP);
-   fChain->SetBranchAddress("mu_propagated_pt", &mu_propagated_pt, &b_mu_propagated_pt);
-   fChain->SetBranchAddress("mu_propagated_phi", &mu_propagated_phi, &b_mu_propagated_phi);
-   fChain->SetBranchAddress("mu_propagated_eta", &mu_propagated_eta, &b_mu_propagated_eta);
-   fChain->SetBranchAddress("mu_propagated_charge", &mu_propagated_charge, &b_mu_propagated_charge);
-   fChain->SetBranchAddress("mu_propagatedLoc_x", &mu_propagatedLoc_x, &b_mu_propagatedLoc_x);
-   fChain->SetBranchAddress("mu_propagatedLoc_y", &mu_propagatedLoc_y, &b_mu_propagatedLoc_y);
-   fChain->SetBranchAddress("mu_propagatedLoc_z", &mu_propagatedLoc_z, &b_mu_propagatedLoc_z);
-   fChain->SetBranchAddress("mu_propagatedLoc_r", &mu_propagatedLoc_r, &b_mu_propagatedLoc_r);
-   fChain->SetBranchAddress("mu_propagatedGlb_x", &mu_propagatedGlb_x, &b_mu_propagatedGlb_x);
-   fChain->SetBranchAddress("mu_propagatedGlb_y", &mu_propagatedGlb_y, &b_mu_propagatedGlb_y);
-   fChain->SetBranchAddress("mu_propagatedGlb_z", &mu_propagatedGlb_z, &b_mu_propagatedGlb_z);
-   fChain->SetBranchAddress("mu_propagatedGlb_r", &mu_propagatedGlb_r, &b_mu_propagatedGlb_r); 
-    Notify();
+   Notify();
 }
 
 Bool_t gem_analysis::Notify()
@@ -996,8 +869,7 @@ bool gem_analysis::fillChain(TChain *chain,
 }
 
 void gem_analysis::bookHistograms(const char* fname) {
- std::cout << "BookHistograms" << std::endl;
-  output_file = TFile::Open(fname,"RECREATE");
+
 }
 
 
