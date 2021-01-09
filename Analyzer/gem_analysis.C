@@ -92,13 +92,14 @@ void gem_analysis::Loop()
 		if(mu_isME11->at(i)){ //with ME1/1 selection
 		h_2Dhlayer1plusZ[1]->Fill(mu_propagatedGlb_x->at(i),mu_propagatedGlb_y->at(i));	
 		h_1Dhlayer1plusZ[1]->Fill(mu_propagated_chamber->at(i));
-		}
+		
 		//matching condition
 		float condition = sqrt(std::pow((std::fabs(mu_propagatedGlb_x->at(i) - gemRecHit_g_x->at(i))),2) + std::pow((std::fabs(mu_propagatedGlb_y->at(i) - gemRecHit_g_y->at(i))),2));
 		if(condition < 10.){ //in cm
 		h_2Dhlayer1plusZ[2]->Fill(mu_propagatedGlb_x->at(i),mu_propagatedGlb_y->at(i));
 		h_1Dhlayer1plusZ[2]->Fill(mu_propagated_chamber->at(i));
 		}
+		}//ME1/1 condition ends
 		}
 		else if((mu_propagatedGlb_z->at(i) > 0) && (mu_propagated_layer->at(i) ==2)){   //GE+1/1 Layer1 no ME1/1 selection
 		
@@ -107,43 +108,45 @@ void gem_analysis::Loop()
                 if(mu_isME11->at(i)){ //with ME1/1 selection
 		h_2Dhlayer2plusZ[1]->Fill(mu_propagatedGlb_x->at(i),mu_propagatedGlb_y->at(i));
                 h_1Dhlayer2plusZ[1]->Fill(mu_propagated_chamber->at(i));
-                }
+                
 		//matching condition
 		float condition = sqrt(std::pow((std::fabs(mu_propagatedGlb_x->at(i) - gemRecHit_g_x->at(i))),2) + std::pow((std::fabs(mu_propagatedGlb_y->at(i) - gemRecHit_g_y->at(i))),2));
 		if(condition < 10.){ //in cm
 		h_2Dhlayer2plusZ[2]->Fill(mu_propagatedGlb_x->at(i),mu_propagatedGlb_y->at(i));
 		h_1Dhlayer2plusZ[2]->Fill(mu_propagated_chamber->at(i));
 		                    }
-		                    }
+		                    }//ME1/1 condition ends
+				    }
 		else if((mu_propagatedGlb_z->at(i) < 0) && (mu_propagated_layer->at(i) ==1)){   //GE-1/1 Layer1 no ME1/1 selection
 		h_2Dhlayer1minusZ[0]->Fill(mu_propagatedGlb_x->at(i),mu_propagatedGlb_y->at(i));
                 h_1Dhlayer1minusZ[0]->Fill(mu_propagated_chamber->at(i));
                 if(mu_isME11->at(i)){ //with ME1/1 selection
 		h_2Dhlayer1minusZ[1]->Fill(mu_propagatedGlb_x->at(i),mu_propagatedGlb_y->at(i));
                 h_1Dhlayer1minusZ[1]->Fill(mu_propagated_chamber->at(i));
-                }
+                
                 //matching condition
                 float condition = sqrt(std::pow((std::fabs(mu_propagatedGlb_x->at(i) - gemRecHit_g_x->at(i))),2) + std::pow((std::fabs(mu_propagatedGlb_y->at(i) - gemRecHit_g_y->at(i))),2));
                 if(condition < 10.){ //in cm
 		h_2Dhlayer1minusZ[2]->Fill(mu_propagatedGlb_x->at(i),mu_propagatedGlb_y->at(i));
                 h_1Dhlayer1minusZ[2]->Fill(mu_propagated_chamber->at(i));
                 }
-                }
+                }//ME1/1 condition ends
+		}
                 else if((mu_propagatedGlb_z->at(i) < 0) && (mu_propagated_layer->at(i) ==2)){   //GE-1/1 Layer2 no ME1/1 selection
 		h_2Dhlayer2minusZ[0]->Fill(mu_propagatedGlb_x->at(i),mu_propagatedGlb_y->at(i));
                 h_1Dhlayer2minusZ[0]->Fill(mu_propagated_chamber->at(i));
                 if(mu_isME11->at(i)){ //with ME1/1 selection
 		h_2Dhlayer2minusZ[1]->Fill(mu_propagatedGlb_x->at(i),mu_propagatedGlb_y->at(i));
                 h_1Dhlayer2minusZ[1]->Fill(mu_propagated_chamber->at(i));
-                }
+                
                 //matching condition
                 float condition = sqrt(std::pow((std::fabs(mu_propagatedGlb_x->at(i) - gemRecHit_g_x->at(i))),2) + std::pow((std::fabs(mu_propagatedGlb_y->at(i) - gemRecHit_g_y->at(i))),2));
                 if(condition < 10.){ //in cm
                 h_2Dhlayer2minusZ[2]->Fill(mu_propagatedGlb_x->at(i),mu_propagatedGlb_y->at(i));
                 h_1Dhlayer2minusZ[2]->Fill(mu_propagated_chamber->at(i));
                                     }
-                                    }
-		    
+                                    }//ME1/1 condition ends
+		    		    }
 				    }	
 				    } // major for loop ends
 		//Now do efficiency
