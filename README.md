@@ -12,7 +12,7 @@ This will produce OfflineMain.exe executable file. To run the executable to get 
 ```
 ./OfflineMain.exe input.root output.root
 or
-./OfflineMain.exe iinput_file_list.txt output.root
+./OfflineMain.exe input_file_list.txt output.root
 ```
 
 This will generate required histograms defined in gem_analysis.C.
