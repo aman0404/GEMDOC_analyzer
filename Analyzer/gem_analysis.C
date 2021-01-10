@@ -14,19 +14,22 @@ void gem_analysis::Loop()
 	TH1D** h_1Dhlayer2plusZ = new TH1D*[m];
 	for(int i=0; i<m; i++){
  	TString name[3]={"Propagated hits from any ME station","Propagated hits with ME1/1 station", "Matched hits"};
-	h_2Dhlayer1plusZ[i] = new TH2D(TString::Format("h_2Dhlayer1plusZ_%d", i), "Layer1 "+name[i] ,200, -300., 300., 200, -300., 300.);
-	h_2Dhlayer2plusZ[i] = new TH2D(TString::Format("h_2Dhlayer2plusZ_%d", i), "Layer2 "+name[i] ,200, -300., 300., 200, -300., 300.);	
-	h_1Dhlayer1plusZ[i] = new TH1D(TString::Format("h_1Dhlayer1plusZ_%d", i), "Layer1 "+name[i] ,36,  0., 36.);	
-	h_1Dhlayer2plusZ[i] = new TH1D(TString::Format("h_1Dhlayer2plusZ_%d", i), "Layer2 "+name[i] ,36,  0., 36.);
+	std::string names[3] ={"prop_", "prop_withME11_", "matched_"};
+	char hist_name[256];
+	sprintf (hist_name, "%s%d_pos",names[i].c_str(),i);
+	h_2Dhlayer1plusZ[i] = new TH2D(TString::Format("h_%s_2DLY1",hist_name), "Layer1 "+name[i] ,200, -300., 300., 200, -300., 300.);
+	h_2Dhlayer2plusZ[i] = new TH2D(TString::Format("h_%s_2DLY2",hist_name), "Layer2 "+name[i] ,200, -300., 300., 200, -300., 300.);	
+	h_1Dhlayer1plusZ[i] = new TH1D(TString::Format("h_%s_1DLY1",hist_name), "Layer1 "+name[i] ,36,  0., 36.);	
+	h_1Dhlayer2plusZ[i] = new TH1D(TString::Format("h_%s_1DLY2",hist_name), "Layer2 "+name[i] ,36,  0., 36.);
 
 	h_2Dhlayer1plusZ[i]->GetXaxis()->SetTitle("Global X");
 	h_2Dhlayer1plusZ[i]->GetYaxis()->SetTitle("Global Y");
-	h_1Dhlayer1plusZ[i]->GetXaxis()->SetTitle("Superchambers");
+	h_1Dhlayer1plusZ[i]->GetXaxis()->SetTitle("Superchamber LY1");
 	h_1Dhlayer1plusZ[i]->GetYaxis()->SetTitle("Events");
 	h_2Dhlayer1plusZ[i]->SetOption("colz"); 
 	h_2Dhlayer2plusZ[i]->GetXaxis()->SetTitle("Global X");
         h_2Dhlayer2plusZ[i]->GetYaxis()->SetTitle("Global Y");
-        h_1Dhlayer2plusZ[i]->GetXaxis()->SetTitle("Superchambers");
+        h_1Dhlayer2plusZ[i]->GetXaxis()->SetTitle("Superchamber LY2");
         h_1Dhlayer2plusZ[i]->GetYaxis()->SetTitle("Events");
 	h_2Dhlayer2plusZ[i]->SetOption("colz");
 	h_1Dhlayer1plusZ[i]->SetMarkerStyle(20);
@@ -45,19 +48,22 @@ void gem_analysis::Loop()
         TH1D** h_1Dhlayer2minusZ = new TH1D*[m];
         for(int i=0; i<m; i++){
         TString name[3]={"Propagated hits from any ME station","Propagated hits with ME1/1 station", "Matched hits"};
-        h_2Dhlayer1minusZ[i] = new TH2D(TString::Format("h_2Dhlayer1minusZ_%d", i), "Layer1 "+name[i] ,200, -300., 300., 200, -300., 300.);
-        h_2Dhlayer2minusZ[i] = new TH2D(TString::Format("h_2Dhlayer2minusZ_%d", i), "Layer2 "+name[i] ,200, -300., 300., 200, -300., 300.);
-        h_1Dhlayer1minusZ[i] = new TH1D(TString::Format("h_1Dhlayer1minusZ_%d", i), "Layer1 "+name[i] ,36,  0., 36.);
-        h_1Dhlayer2minusZ[i] = new TH1D(TString::Format("h_1Dhlayer2minusZ_%d", i), "Layer2 "+name[i] ,36,  0., 36.);
+	std::string names[3] ={"prop_", "prop_withME11_", "matched_"};
+	char hist_name[256];
+        sprintf (hist_name, "%s%d_neg",names[i].c_str(),i);
+	h_2Dhlayer1minusZ[i] = new TH2D(TString::Format("h_%s_2DLY1",hist_name), "Layer1 "+name[i] ,200, -300., 300., 200, -300., 300.);
+        h_2Dhlayer2minusZ[i] = new TH2D(TString::Format("h_%s_2DLY2",hist_name), "Layer2 "+name[i] ,200, -300., 300., 200, -300., 300.);
+        h_1Dhlayer1minusZ[i] = new TH1D(TString::Format("h_%s_1DLY1",hist_name), "Layer1 "+name[i] ,36,  0., 36.);
+        h_1Dhlayer2minusZ[i] = new TH1D(TString::Format("h_%s_1DLY2",hist_name), "Layer2 "+name[i] ,36,  0., 36.);
         
         h_2Dhlayer1minusZ[i]->GetXaxis()->SetTitle("Global X");
         h_2Dhlayer1minusZ[i]->GetYaxis()->SetTitle("Global Y");
-        h_1Dhlayer1minusZ[i]->GetXaxis()->SetTitle("Superchambers");
+        h_1Dhlayer1minusZ[i]->GetXaxis()->SetTitle("Superchamber LY1");
         h_1Dhlayer1minusZ[i]->GetYaxis()->SetTitle("Events");
         h_2Dhlayer1minusZ[i]->SetOption("colz"); 
         h_2Dhlayer2minusZ[i]->GetXaxis()->SetTitle("Global X");
         h_2Dhlayer2minusZ[i]->GetYaxis()->SetTitle("Global Y");
-        h_1Dhlayer2minusZ[i]->GetXaxis()->SetTitle("Superchambers");
+        h_1Dhlayer2minusZ[i]->GetXaxis()->SetTitle("Superchamber LY2");
         h_1Dhlayer2minusZ[i]->GetYaxis()->SetTitle("Events");
         h_2Dhlayer2minusZ[i]->SetOption("colz");
         h_1Dhlayer1minusZ[i]->SetMarkerStyle(20);
@@ -71,8 +77,6 @@ void gem_analysis::Loop()
         }
 
 
-//	TH1D *hprop = new TH1D("hprop", "Propagated hits", 36, 0, 36);
-//	TH1D *hprop_me11 = new TH1D("hprop_me11", " Propagated with ME11", 36, 0, 36);
    if (fChain == 0) return;
 
    Long64_t nentries = fChain->GetEntriesFast();
@@ -84,69 +88,98 @@ void gem_analysis::Loop()
       nb = fChain->GetEntry(jentry);   nbytes += nb;
 
 //Checking all the propagted muons from ME stations to GEM
-      for(int i=0; i< mu_propagatedGlb_z->size(); i++){
-		if((mu_propagatedGlb_z->at(i) > 0) && (mu_propagated_layer->at(i) ==1)){   //GE+1/1 Layer1 no ME1/1 selection
+      for(std::size_t i=0; i< mu_propagatedGlb_z->size(); i++){
+		if((mu_propagated_region->at(i) > 0) && (mu_propagated_layer->at(i) ==1)){   //GE+1/1 Layer1 no ME1/1 selection
 		
 		h_2Dhlayer1plusZ[0]->Fill(mu_propagatedGlb_x->at(i),mu_propagatedGlb_y->at(i));
 		h_1Dhlayer1plusZ[0]->Fill(mu_propagated_chamber->at(i));
 		if(mu_isME11->at(i)){ //with ME1/1 selection
 		h_2Dhlayer1plusZ[1]->Fill(mu_propagatedGlb_x->at(i),mu_propagatedGlb_y->at(i));	
 		h_1Dhlayer1plusZ[1]->Fill(mu_propagated_chamber->at(i));
-		
+
+		bool matched = false;	
+		for(std::size_t j =0; j<gemRecHit_g_z->size(); j++){	
 		//matching condition
-		float condition = sqrt(std::pow((std::fabs(mu_propagatedGlb_x->at(i) - gemRecHit_g_x->at(i))),2) + std::pow((std::fabs(mu_propagatedGlb_y->at(i) - gemRecHit_g_y->at(i))),2));
+		float condition = sqrt(std::pow((std::fabs(mu_propagatedGlb_x->at(i) - gemRecHit_g_x->at(j))),2) + std::pow((std::fabs(mu_propagatedGlb_y->at(i) - gemRecHit_g_y->at(j))),2));
 		if(condition < 10.){ //in cm
-		h_2Dhlayer1plusZ[2]->Fill(mu_propagatedGlb_x->at(i),mu_propagatedGlb_y->at(i));
-		h_1Dhlayer1plusZ[2]->Fill(mu_propagated_chamber->at(i));
+		matched = true;
 		}
+		}//end rechit loop
+		if(matched){
+		h_2Dhlayer1plusZ[2]->Fill(mu_propagatedGlb_x->at(i),mu_propagatedGlb_y->at(i));
+                h_1Dhlayer1plusZ[2]->Fill(mu_propagated_chamber->at(i));
+		}//matched condition
 		}//ME1/1 condition ends
 		}
-		else if((mu_propagatedGlb_z->at(i) > 0) && (mu_propagated_layer->at(i) ==2)){   //GE+1/1 Layer1 no ME1/1 selection
+		else if((mu_propagated_region->at(i) > 0) && (mu_propagated_layer->at(i) ==2)){   //GE+1/1 Layer2 no ME1/1 selection
 		
 		h_2Dhlayer2plusZ[0]->Fill(mu_propagatedGlb_x->at(i),mu_propagatedGlb_y->at(i));
                 h_1Dhlayer2plusZ[0]->Fill(mu_propagated_chamber->at(i));
                 if(mu_isME11->at(i)){ //with ME1/1 selection
 		h_2Dhlayer2plusZ[1]->Fill(mu_propagatedGlb_x->at(i),mu_propagatedGlb_y->at(i));
                 h_1Dhlayer2plusZ[1]->Fill(mu_propagated_chamber->at(i));
-                
+              
+		bool matched = false; 
+		for(std::size_t j =0; j<gemRecHit_g_z->size(); j++){ 
 		//matching condition
-		float condition = sqrt(std::pow((std::fabs(mu_propagatedGlb_x->at(i) - gemRecHit_g_x->at(i))),2) + std::pow((std::fabs(mu_propagatedGlb_y->at(i) - gemRecHit_g_y->at(i))),2));
+		float condition = sqrt(std::pow((std::fabs(mu_propagatedGlb_x->at(i) - gemRecHit_g_x->at(j))),2) + std::pow((std::fabs(mu_propagatedGlb_y->at(i) - gemRecHit_g_y->at(j))),2));
 		if(condition < 10.){ //in cm
-		h_2Dhlayer2plusZ[2]->Fill(mu_propagatedGlb_x->at(i),mu_propagatedGlb_y->at(i));
-		h_1Dhlayer2plusZ[2]->Fill(mu_propagated_chamber->at(i));
+		matched = true;
 		                    }
-		                    }//ME1/1 condition ends
+				    } //end rechit loop
+		if(matched){
+		h_2Dhlayer2plusZ[2]->Fill(mu_propagatedGlb_x->at(i),mu_propagatedGlb_y->at(i));
+                h_1Dhlayer2plusZ[2]->Fill(mu_propagated_chamber->at(i));
+				    } //matched condition
+
+			            }//ME1/1 condition ends
 				    }
-		else if((mu_propagatedGlb_z->at(i) < 0) && (mu_propagated_layer->at(i) ==1)){   //GE-1/1 Layer1 no ME1/1 selection
+		else if((mu_propagated_region->at(i) < 0) && (mu_propagated_layer->at(i) ==1)){   //GE-1/1 Layer1 no ME1/1 selection
 		h_2Dhlayer1minusZ[0]->Fill(mu_propagatedGlb_x->at(i),mu_propagatedGlb_y->at(i));
                 h_1Dhlayer1minusZ[0]->Fill(mu_propagated_chamber->at(i));
                 if(mu_isME11->at(i)){ //with ME1/1 selection
 		h_2Dhlayer1minusZ[1]->Fill(mu_propagatedGlb_x->at(i),mu_propagatedGlb_y->at(i));
                 h_1Dhlayer1minusZ[1]->Fill(mu_propagated_chamber->at(i));
-                
+               
+		bool matched = false; 
+		for(std::size_t j =0; j<gemRecHit_g_z->size(); j++){	
                 //matching condition
-                float condition = sqrt(std::pow((std::fabs(mu_propagatedGlb_x->at(i) - gemRecHit_g_x->at(i))),2) + std::pow((std::fabs(mu_propagatedGlb_y->at(i) - gemRecHit_g_y->at(i))),2));
+		float condition = sqrt(std::pow((std::fabs(mu_propagatedGlb_x->at(i) - gemRecHit_g_x->at(j))),2) + std::pow((std::fabs(mu_propagatedGlb_y->at(i) - gemRecHit_g_y->at(j))),2));
                 if(condition < 10.){ //in cm
+    		matched = true;
+	            }
+		    }//end rechit loop
+		if(matched){
 		h_2Dhlayer1minusZ[2]->Fill(mu_propagatedGlb_x->at(i),mu_propagatedGlb_y->at(i));
                 h_1Dhlayer1minusZ[2]->Fill(mu_propagated_chamber->at(i));
-                }
-                }//ME1/1 condition ends
+		}//matched condition
+		}//ME1/1 condition ends
 		}
-                else if((mu_propagatedGlb_z->at(i) < 0) && (mu_propagated_layer->at(i) ==2)){   //GE-1/1 Layer2 no ME1/1 selection
+                else if((mu_propagated_region->at(i) < 0) && (mu_propagated_layer->at(i) ==2)){   //GE-1/1 Layer2 no ME1/1 selection
 		h_2Dhlayer2minusZ[0]->Fill(mu_propagatedGlb_x->at(i),mu_propagatedGlb_y->at(i));
                 h_1Dhlayer2minusZ[0]->Fill(mu_propagated_chamber->at(i));
                 if(mu_isME11->at(i)){ //with ME1/1 selection
 		h_2Dhlayer2minusZ[1]->Fill(mu_propagatedGlb_x->at(i),mu_propagatedGlb_y->at(i));
                 h_1Dhlayer2minusZ[1]->Fill(mu_propagated_chamber->at(i));
-                
+              
+		bool matched = false; 
+		for(std::size_t j =0; j<gemRecHit_g_z->size(); j++){ 
                 //matching condition
-                float condition = sqrt(std::pow((std::fabs(mu_propagatedGlb_x->at(i) - gemRecHit_g_x->at(i))),2) + std::pow((std::fabs(mu_propagatedGlb_y->at(i) - gemRecHit_g_y->at(i))),2));
-                if(condition < 10.){ //in cm
-                h_2Dhlayer2minusZ[2]->Fill(mu_propagatedGlb_x->at(i),mu_propagatedGlb_y->at(i));
-                h_1Dhlayer2minusZ[2]->Fill(mu_propagated_chamber->at(i));
+		float condition = sqrt(std::pow((std::fabs(mu_propagatedGlb_x->at(i) - gemRecHit_g_x->at(j))),2) + std::pow((std::fabs(mu_propagatedGlb_y->at(i) - gemRecHit_g_y->at(j))),2));
+		if(condition < 10.){ //in cm
+		matched = true;
                                     }
-                                    }//ME1/1 condition ends
+				    } //end rechit loop
+                 if(matched){
+                 h_2Dhlayer2minusZ[2]->Fill(mu_propagatedGlb_x->at(i),mu_propagatedGlb_y->at(i));
+		 h_1Dhlayer2minusZ[2]->Fill(mu_propagated_chamber->at(i));
+			}// matched condition
+
+				    }//ME1/1 condition ends
 		    		    }
+		else{
+		std::cout<< " no matching rechit found"<<std::endl;}
+					
 				    }	
 				    } // major for loop ends
 		//Now do efficiency
@@ -174,7 +207,7 @@ void gem_analysis::Loop()
 
 		hist_1Dmatchedlayer1plusZ->SetOption("P");
 		hist_1Dmatchedlayer1plusZ->SetTitle("Efficiency for +z Layer1");
-		hist_1Dmatchedlayer1plusZ->GetXaxis()->SetTitle("Superchambers");	                
+		hist_1Dmatchedlayer1plusZ->GetXaxis()->SetTitle("Superchamber LY1");	                
 		hist_1Dmatchedlayer1plusZ->GetYaxis()->SetTitle("Events");
 		hist_1Dmatchedlayer1plusZ->SetStats(kFALSE);
 	
@@ -186,7 +219,7 @@ void gem_analysis::Loop()
 
                 hist_1Dmatchedlayer2plusZ->SetOption("P");
                 hist_1Dmatchedlayer2plusZ->SetTitle("Efficiency for +z Layer2");
-                hist_1Dmatchedlayer2plusZ->GetXaxis()->SetTitle("Superchambers");
+                hist_1Dmatchedlayer2plusZ->GetXaxis()->SetTitle("Superchamber LY2");
                 hist_1Dmatchedlayer2plusZ->GetYaxis()->SetTitle("Events");
 		hist_1Dmatchedlayer2plusZ->SetStats(kFALSE);	
 
@@ -214,7 +247,7 @@ void gem_analysis::Loop()
 
                 hist_1Dmatchedlayer1minusZ->SetOption("P");
                 hist_1Dmatchedlayer1minusZ->SetTitle("Efficiency for -z Layer1");
-                hist_1Dmatchedlayer1minusZ->GetXaxis()->SetTitle("Superchambers");
+                hist_1Dmatchedlayer1minusZ->GetXaxis()->SetTitle("Superchamber LY1");
                 hist_1Dmatchedlayer1minusZ->GetYaxis()->SetTitle("Events");
                 hist_1Dmatchedlayer1minusZ->SetStats(kFALSE);
 
@@ -226,7 +259,7 @@ void gem_analysis::Loop()
 
                 hist_1Dmatchedlayer2minusZ->SetOption("P");
                 hist_1Dmatchedlayer2minusZ->SetTitle("Efficiency for -z Layer2");
-                hist_1Dmatchedlayer2minusZ->GetXaxis()->SetTitle("Superchambers");
+                hist_1Dmatchedlayer2minusZ->GetXaxis()->SetTitle("Superchamber LY2");
                 hist_1Dmatchedlayer2minusZ->GetYaxis()->SetTitle("Events");
                 hist_1Dmatchedlayer2minusZ->SetStats(kFALSE);
 
